@@ -14,11 +14,11 @@
 
     get_smallest_bar(bars_json)
 
-Тоже самое, что и inline (get_biggest_bar). Возвращает бар с наименьшим количеством сидячих мест
+Тоже самое, что и (inline) get_biggest_bar. Возвращает бар с наименьшим количеством сидячих мест
 
     get_closest_bar(bars_json, longitude, latitude)
 
-Возвращает близжайщий бар к точке inline((longitude, latitude))
+Возвращает близжайщий бар к точке (inline)(longitude, latitude)
 
 
 # Как запустить
