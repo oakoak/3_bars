@@ -2,39 +2,27 @@
 
 Модуль позволяет выяснить какой бар самый мальнький или самый большой, а так же наиблизжащий к вам
 
-# Как использовать
-
-    load_data(filepath)
-
- Возвращает массив баров из ващего json файла с ними, на вход подается
-
-    get_biggest_bar(bars_json)
-
-Принимает на вход словарь с двумя полями, внутри которого нас интересует поле "features", внутри которого массив с барами. Возвращает словарь с данными наибольшего бара.
-
-    get_smallest_bar(bars_json)
-
-Тоже самое, что и **get_biggest_bar**. Возвращает бар с наименьшим количеством сидячих мест
-
-    get_closest_bar(bars_json, longitude, latitude)
-
-Возвращает близжайщий бар к точке **(longitude, latitude)**
+## Как использовать
+```bash
+import bars
+data = bars.load_data(filepath)
+print(get_biggest_bar(data))
+```
+###Аналогично
+```bash
+    get_smallest_bar(bars)
+    get_closest_bar(bars, longitude, latitude)
+```
+Где **(longitude, latitude)** - ваши координаты
 
 
-# Как запустить
-
-Скрипт требует для своей работы установленного интерпретатора Python версии 3.5
-
-Запуск на Linux:
-
-```#!bash
-
-$ python bars.py # possibly requires call of python3 executive instead of just python
-# FIXME вывести пример ответа скрипта
-
+## Как запустить
+```bash
+$ python bars.py
+Спорт бар «Красная машина»
 ```
 
-Запуск на Windows происходит аналогично.
+Скрипт требует для своей работы установленного интерпретатора Python версии 3.5
 
 # Цели проекта
 
