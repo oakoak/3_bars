@@ -22,6 +22,5 @@ def get_closest_bar(bars_json, longitude, latitude):
                (bar["geometry"]["coordinates"][1] - latitude)**2
     return min(bars_json['features'], key=distance)
 
-
 if __name__ == '__main__':
     pass
