@@ -8,7 +8,7 @@ import bars
 data = bars.load_data(filepath)
 print(get_biggest_bar(data))
 ```
-###Аналогично
+### Аналогично
 ```bash
     get_smallest_bar(bars)
     get_closest_bar(bars, longitude, latitude)
