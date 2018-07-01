@@ -18,8 +18,8 @@ def get_smallest_bar(bars_json):
 
 def get_closest_bar(bars_json, longitude, latitude):
     def distance(bar):
-        return ((bar["geometry"]["coordinates"][0] - longitude)**2 +
-                (bar["geometry"]["coordinates"][1] - latitude)**2)
+        return (bar["geometry"]["coordinates"][0] - longitude)**2 +
+                (bar["geometry"]["coordinates"][1] - latitude)**2
     return min(bars_json['features'], key = distance)
 
 
