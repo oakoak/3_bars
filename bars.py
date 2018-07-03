@@ -24,9 +24,9 @@ def get_closest_bar(bars, longitude, latitude):
                         (bar["geometry"]["coordinates"][1] - latitude) ** 2)
 
 
-def is_number(s):
+def is_number(number):
     try:
-        float(s)
+        float(number)
         return True
     except ValueError:
         return False
