@@ -2,8 +2,8 @@ import json
 
 
 def load_data(filepath):
-    file_json = open(filepath, 'r', encoding='utf-8')
-    return json.loads(file_json.read())
+    with open(filepath, 'r', encoding='utf-8') as file_json:
+        return json.loads(file_json.read())
 
 
 def get_seats(bar):
