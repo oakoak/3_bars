@@ -6,8 +6,8 @@ def load_data(filepath):
     try:
         with open(filepath, "r", encoding="utf-8") as file_json:
             return json.loads(file_json.read())
-    except ValueError:
-        exit("Could not open file.")
+    except IOError:
+        return None
 
 
 def get_seats(bar):
@@ -45,7 +45,7 @@ if __name__ == "__main__":
         exit("Usage:python3 bars.py file path to json.")
     bars = load_data(sys.argv[1])
     if bars is None:
-        exit("Data is invalid")
+        exit("Could not open file or data is invalid.")
     bars = bars["features"]
 
     x_gps = is_number(input("longitude:"))
