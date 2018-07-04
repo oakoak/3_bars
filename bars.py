@@ -51,7 +51,7 @@ def print_information(bars):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        exit("Usage:python3 bars.py file path to json.")
+        exit("Usage:python3 bars.py file path to json")
     try:
         records = load_data(sys.argv[1])
     except IOError:
