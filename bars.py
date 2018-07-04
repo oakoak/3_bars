@@ -8,6 +8,8 @@ def load_data(filepath):
             return json.loads(file_json.read())
     except ValueError:
         return None
+    except IOError:
+        return None
 
 
 def get_seats(bar):
@@ -36,6 +38,11 @@ def convert_to_number(str_number):
         return None
 
 
+def get_xy():
+    return convert_to_number(input("longitude:")), \
+           convert_to_number(input("latitude:"))
+
+
 def print_bar(bar):
     print(bar["properties"]["Attributes"]["Name"])
 
@@ -52,16 +59,12 @@ def print_information(bars):
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         exit("Usage:python3 bars.py file path to json")
-    try:
         records = load_data(sys.argv[1])
-    except IOError:
-        exit("Could not open file")
     if records is None:
-        exit("Data is not JSON.")
+        exit("Could not open file or data is not JSON.")
     bars = records["features"]
 
-    x_gps = convert_to_number(input("longitude:"))
-    y_gps = convert_to_number(input("latitude:"))
+    x_gps, y_gps = get_xy()
     if not(x_gps and y_gps):
         exit("You entered incorrect values, enter again.")
 
