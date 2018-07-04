@@ -28,16 +28,25 @@ def get_closest_bar(bars, longitude, latitude):
         (bar["geometry"]["coordinates"][1] - latitude) ** 2))
 
 
-def convert_to_number(number):
+def convert_to_number(str_number):
     try:
-        value = float(number)
-        return value
+        number = float(str_number)
+        return number
     except ValueError:
         return None
 
 
 def print_bar(bar):
     print(bar["properties"]["Attributes"]["Name"])
+
+
+def print_information(bars):
+    print("\nThe biggest moscow's bar is:")
+    print_bar(get_biggest_bar(bars))
+    print("\nThe smallest moscow's bar is: ")
+    print_bar(get_smallest_bar(bars))
+    print("\nThe nearest moscow's bar is: ")
+    print_bar(get_closest_bar(bars, x_gps, y_gps))
 
 
 if __name__ == "__main__":
@@ -56,9 +65,4 @@ if __name__ == "__main__":
     if not(x_gps and y_gps):
         exit("You entered incorrect values, enter again.")
 
-    print("\nThe biggest moscow's bar is:")
-    print_bar(get_biggest_bar(bars))
-    print("\nThe smallest moscow's bar is: ")
-    print_bar(get_smallest_bar(bars))
-    print("\nThe nearest moscow's bar is: ")
-    print_bar(get_closest_bar(bars, x_gps, y_gps))
+    print_information(bars)
