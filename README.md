@@ -9,7 +9,7 @@ This script show the smallest, the largest and the nearest bar
 + The script show biggest bar
 + The script show nearest bar to **(x,y)**
 
-### script usage example
+### Script usage example
 ```python
 import bars
 data = bars.load_data(filepath)
@@ -32,10 +32,10 @@ $ python bars.py
 The biggest moscow's bar is:
 Спорт бар «Красная машина»
 
-The smallest moscow's bar is
+The smallest moscow's bar is:
 БАР. СОКИ
 
-The nearest moscow's bar is
+The nearest moscow's bar is:
 Таверна
 ```
 ##  Where to get data:
