@@ -53,8 +53,6 @@ def print_information(bars, user_gps):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        exit("Usage:python3 bars.py file path to json")
     try:
         file_path = sys.argv[1]
         bars = load_data(file_path)
