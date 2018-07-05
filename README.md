@@ -29,14 +29,15 @@ $ python bars.py
 ```
 ### Example result
 ```bash
-The biggest moscow's bar is:
-Спорт бар «Красная машина»
+Biggest bar name: Спорт бар «Красная машина»
+Biggest bar address: Автозаводская улица, дом 23, строение 1
 
-The smallest moscow's bar is:
-БАР. СОКИ
+Smallest bar name: БАР. СОКИ
+Smallest bar address: Дубравная улица, дом 34/29
 
-The nearest moscow's bar is:
-Таверна
+Nearest bar name: Таверна
+Nearest bar address: проспект Защитников Москвы, дом 8
+
 ```
 ##  Where to get data:
     https://devman.org/fshare/1503831681/4/

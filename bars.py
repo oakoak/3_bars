@@ -3,13 +3,9 @@ import sys
 
 
 def load_data(filepath):
-    try:
-        with open(filepath, "r", encoding="utf-8") as file_json:
-            return json.loads(file_json.read())
-    except ValueError:
-        return None
-    except IOError:
-        return None
+    with open(filepath, "r", encoding="utf-8") as file_json:
+        data_bars = json.loads(file_json.read())
+    return data_bars["features"]
 
 
 def get_seats(bar):
@@ -30,42 +26,43 @@ def get_closest_bar(bars, longitude, latitude):
         (bar["geometry"]["coordinates"][1] - latitude) ** 2))
 
 
-def convert_to_number(str_number):
+def get_user_gps():
     try:
-        number = float(str_number)
-        return number
+        longitube = float(input('Input GPS coordinates longitube: '))
+        latitube = float(input('Input GPS coordinates latitube: '))
+        return [longitube, latitube]
     except ValueError:
         return None
 
 
-def get_xy():
-    return convert_to_number(input("longitude:")), \
-           convert_to_number(input("latitude:"))
+def print_bar(bar, pointer):
+    print("{0} bar name: {1}\n"
+          "{0} bar address: {2}\n".format(
+            pointer,
+            bar["properties"]["Attributes"]["Name"],
+            bar["properties"]["Attributes"]["Address"]))
 
 
-def print_bar(bar):
-    print(bar["properties"]["Attributes"]["Name"])
-
-
-def print_information(bars):
-    print("\nThe biggest moscow's bar is:")
-    print_bar(get_biggest_bar(bars))
-    print("\nThe smallest moscow's bar is: ")
-    print_bar(get_smallest_bar(bars))
-    print("\nThe nearest moscow's bar is: ")
-    print_bar(get_closest_bar(bars, x_gps, y_gps))
+def print_information(bars, user_gps):
+    print_bar(get_biggest_bar(bars), "Biggest")
+    print_bar(get_smallest_bar(bars), "Smallest")
+    if user_gps:
+        print_bar(get_closest_bar(bars, user_gps[0], user_gps[1]), "Nearest")
+    else:
+        print("Error: GPS coordinates must be input and float type!")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        exit("Usage:python3 bars.py file path to json")
-        records = load_data(sys.argv[1])
-    if records is None:
-        exit("Could not open file or data is not JSON.")
-    bars = records["features"]
-
-    x_gps, y_gps = get_xy()
-    if not(x_gps and y_gps):
-        exit("You entered incorrect values, enter again.")
-
-    print_information(bars)
+    try:
+        if len(sys.argv) != 2:
+            exit("Usage:python3 bars.py file path to json")
+        file_path = sys.argv[1]
+        bars = load_data(file_path)
+        gps_coordinates = get_user_gps()
+        print_information(bars, gps_coordinates)
+    except IndexError:
+        exit("Error: No filename for reading!")
+    except FileNotFoundError:
+        exit("Error: file or path '{0}' not found!\n".format(file_path))
+    except json.JSONDecodeError:
+        exit("Error: this is not json-file!")
