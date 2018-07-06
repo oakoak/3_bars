@@ -43,18 +43,22 @@ def print_bar(bar, pointer):
             bar["properties"]["Attributes"]["Address"]))
 
 
+def main(file_path):
+    bars = load_data(file_path)
+    gps_coordinates = get_user_gps()
+
+    print_bar(get_biggest_bar(bars), "Biggest")
+    print_bar(get_smallest_bar(bars), "Smallest")
+    if gps_coordinates:
+        print_bar(get_closest_bar(bars, gps_coordinates[0], gps_coordinates[1]), "Nearest")
+    else:
+        print("Error: GPS coordinates must be input and float type!")
+
+
 if __name__ == "__main__":
     try:
         file_path = sys.argv[1]
-        bars = load_data(file_path)
-        gps_coordinates = get_user_gps()
-
-        print_bar(get_biggest_bar(bars), "Biggest")
-        print_bar(get_smallest_bar(bars), "Smallest")
-        if gps_coordinates:
-            print_bar(get_closest_bar(bars, gps_coordinates[0], gps_coordinates[1]), "Nearest")
-        else:
-            print("Error: GPS coordinates must be input and float type!")
+        main(file_path)
     except IndexError:
         exit("Error: No filename for reading!")
     except FileNotFoundError:
