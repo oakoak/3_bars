@@ -58,11 +58,10 @@ def main():
 
 if __name__ == "__main__":
     try:
-
         main()
     except IndexError:
         exit("Error: No filename for reading!")
     except FileNotFoundError:
-        exit("Error: file or path '{0}' not found!\n".format(file_path))
+        exit("Error: file or path '{0}' not found!\n".format(sys.argv[1]))
     except json.JSONDecodeError:
         exit("Error: this is not json-file!")
