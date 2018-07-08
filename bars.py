@@ -44,24 +44,24 @@ def print_bar(bar, pointer):
 
 
 def main():
-    file_path = sys.argv[1]
-    bars = load_data(file_path)
-    gps_coordinates = get_user_gps()
-
-    if gps_coordinates:
-        print_bar(get_biggest_bar(bars), "Biggest")
-        print_bar(get_smallest_bar(bars), "Smallest")
-        print_bar(get_closest_bar(bars, gps_coordinates[0], gps_coordinates[1]), "Nearest")
-    else:
-        exit("Error: GPS coordinates must be input and float type!")
-
-
-if __name__ == "__main__":
     try:
-        main()
+        file_path = sys.argv[1]
+        bars = load_data(file_path)
+        gps_coordinates = get_user_gps()
+
+        if gps_coordinates:
+            print_bar(get_biggest_bar(bars), "Biggest")
+            print_bar(get_smallest_bar(bars), "Smallest")
+            print_bar(get_closest_bar(bars, gps_coordinates[0], gps_coordinates[1]), "Nearest")
+        else:
+            exit("Error: GPS coordinates must be input and float type!")
     except IndexError:
         exit("Error: No filename for reading!")
     except FileNotFoundError:
         exit("Error: file or path '{0}' not found!\n".format(sys.argv[1]))
     except json.JSONDecodeError:
         exit("Error: this is not json-file!")
+
+
+if __name__ == "__main__":
+    main()
